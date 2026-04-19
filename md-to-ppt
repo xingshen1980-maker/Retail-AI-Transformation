@@ -1,0 +1,35 @@
+name: md-to-pptx
+description: >
+  Reads a markdown report file and generates a professional executive
+  PowerPoint presentation using pptxgenjs. Designed for weekly retail
+  AI intelligence reports.
+input_schema:
+  type: object
+  properties:
+    md_path:
+      type: string
+      description: Full path to the source .md file
+    output_path:
+      type: string
+      description: Full path where the .pptx should be saved
+    theme:
+      type: string
+      description: Color theme - "dark" (navy/blue) or "light" (white/blue)
+      default: dark
+  required:
+    - md_path
+    - output_path
+implementation: |-
+  1. Read the markdown file at md_path
+  2. Parse sections: Core Overview, Enterprise Updates, Case Analysis,
+     IKEA Recommendations, Risks
+  3. Run: npm install -g pptxgenjs (if not installed)
+  4. Generate a Node.js pptxgenjs script with:
+     - Slide 1: Cover (title, date, classification)
+     - Slide 2: Weekly Core Overview
+     - Slide 3-N: One slide per enterprise update
+     - Slide N+1: Case Analysis (3 cases)
+     - Slide N+2: IKEA Recommendations
+     - Slide N+3: Risks & Observations
+  5. Save to output_path
+  6. Confirm file exists and return the output path
